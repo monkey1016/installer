@@ -15,7 +15,7 @@ ignored = [
 
 [[constraint]]
   name = "github.com/terraform-providers/terraform-provider-aws"
-  version = "=2.10.0"
+  version = "=2.40.0"
 
 [[override]]
   name = "github.com/aws/aws-sdk-go"
