@@ -34,7 +34,7 @@ type ClusterUninstaller struct {
 
 	Logger logrus.FieldLogger
 
-	resourceGroupsClient    resources.GroupsGroupClient
+	resourceGroupsClient    resources.GroupsClient
 	zonesClient             dns.ZonesClient
 	recordsClient           dns.RecordSetsClient
 	serviceprincipalsClient graphrbac.ServicePrincipalsClient
@@ -42,7 +42,7 @@ type ClusterUninstaller struct {
 }
 
 func (o *ClusterUninstaller) configureClients() {
-	o.resourceGroupsClient = resources.NewGroupsGroupClient(o.SubscriptionID)
+	o.resourceGroupsClient = resources.NewGroupsClient(o.SubscriptionID)
 	o.resourceGroupsClient.Authorizer = o.Authorizer
 
 	o.zonesClient = dns.NewZonesClient(o.SubscriptionID)
@@ -210,7 +210,7 @@ func toRecordType(t string) dns.RecordType {
 	return dns.RecordType(strings.TrimPrefix(t, "Microsoft.Network/dnszones/"))
 }
 
-func deleteResourceGroup(ctx context.Context, client resources.GroupsGroupClient, logger logrus.FieldLogger, name string) error {
+func deleteResourceGroup(ctx context.Context, client resources.GroupsClient, logger logrus.FieldLogger, name string) error {
 	logger = logger.WithField("resource group", name)
 	ctx, cancel := context.WithTimeout(ctx, 30*time.Minute)
 	defer cancel()
