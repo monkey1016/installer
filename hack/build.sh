@@ -59,4 +59,4 @@ then
 	export CGO_ENABLED=1
 fi
 
-go build -ldflags "${LDFLAGS}" -tags "${TAGS}" -o "${OUTPUT}" ./cmd/openshift-install
+go build -v -a -ldflags "${LDFLAGS}" -tags "${TAGS}" -o "${OUTPUT}" ./cmd/openshift-install
